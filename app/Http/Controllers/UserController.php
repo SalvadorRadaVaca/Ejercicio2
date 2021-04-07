@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use Session;
 use Redirect;
 use App\Models\User;
+use App\Models\Role;
+use App\Models\UserRole;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -39,7 +40,11 @@ class UserController extends Controller
 
     public function show($id)
     {   
-        //
+        return view('roles.index')->with([
+            'user' => User::find($id),
+            'roles' => Role::all(),
+            'users_roles' => UserRole::select('role_id')->where('user_id', $id)->get(),
+        ]);
     } 
 
     public function edit($id)

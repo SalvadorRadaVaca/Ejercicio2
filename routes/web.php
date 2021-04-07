@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserRoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
@@ -24,3 +25,5 @@ Auth::routes();
 Route::resource('/usuarios', UserController::class)->name('*', 'usuarios');
 
 Route::resource('/roles', RoleController::class)->name('*', 'roles');
+
+Route::resource('/usroles', UserRoleController::class)->name('*', 'usroles');
